@@ -1,38 +1,23 @@
 @startuml C4_Elements
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-Container(sistema_pedido, "Sistema de Pedido", "", "Sistema que envolve todas as classes de pedido.")
-Container(sistema_interface, "Sistema Interfaces", "", "Sistema que envolve todas as interfaces da aplicação.")
-Container(sistema_armazenagem, "Sistema de Armazenamento", "", "Sistema que envolve todas as ferramentas de armazenamento de dados.")
-Container(sistema_autenticacao, "Sistema Autenticação", "", "Sistema que envolve todas as verificações/autenticações.")
-Container(sistema_pagamento, "Sistema de Pagamento", "", "Sistema que envolve todas as ações relacionadas a pagamentos.")
+
+System(autenticacao_gerenciamento, "Sistema de Autenticação e Gerenciamento de Usuários", "Autenticações de toda a aplicação e seus componentes", "")
+System(pagamentos, "Sistema de Pagamentos", "Gerenciamento dos pagamentos", "")
+System(estoque, "Sistema de Estoque", "Controle dos produtos disponíveis", "")
+System(pedidos, "Sistema de Pedidos", "Pedido,catálogo e recomendações", "")
+System(avaliacao_comentarios, "Sistema de Avaliação e Comentários", "", "")
 
 
-Rel(sistema_interface,sistema_pedido,"","Fornece as informações de entrada")
-Rel(sistema_interface,sistema_armazenagem,"","Envia os dados do usuario/interação")
-Rel(sistema_interface,sistema_autenticacao,"","Envia dados do usuário/pedido")
-Rel(sistema_interface,sistema_pagamento,"","Envia os dados do pagamento")
-Rel(sistema_pedido,sistema_interface,"","Confirmações das interações")
-Rel(sistema_autenticacao,sistema_interface,"","Resultados das verificações")
+Rel(autenticacao_gerenciamento,pedidos,"Dados do usuário","")
+Rel(autenticacao_gerenciamento,pagamentos,"Dados do usuário","")
+Rel(autenticacao_gerenciamento,avaliacao_comentarios,"Dados do usuário","")
+Rel(autenticacao_gerenciamento,estoque,"Dados do administrador/usuário","")
 
+Rel(pedidos,pagamentos,"Dados do pagamento","")
+Rel(pagamentos,pedidos,"Confirmação do pagamento","")
 
-Rel(sistema_armazenagem,sistema_interface,"Confirmação do armazenagem","")
-Rel(sistema_armazenagem,sistema_autenticacao,"Confirmação do armazenagem","")
-Rel(sistema_armazenagem,sistema_pagamento,"Confirmação do armazenagem","")
-
-
-Rel(sistema_autenticacao,sistema_pagamento,"Retorna a o resultado da validação das informações de pagamento","")
-
-
-Rel(sistema_pagamento,sistema_autenticacao,"Mandar dados do pagamento do pedido","")
-
-
-Rel(sistema_pedido,sistema_armazenagem,"","Armazenar dados do pedido")
-Rel(sistema_pedido,sistema_autenticacao,"","Pede verificar algo")
-Rel(sistema_pedido,sistema_pagamento,"","Informar os dados de pagamento")
-Rel(sistema_armazenagem,sistema_pedido,"","Informações para autenticação")
-Rel(sistema_autenticacao,sistema_pedido,"","Informações de confirmação do pedido")
-Rel(sistema_pagamento,sistema_pedido,"","Retornar o estado do pagamento")
+Rel(estoque,pedidos,"Se o produto está disponível","")
 
 
 @enduml
