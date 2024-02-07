@@ -1,3 +1,30 @@
 @startuml C4_Elements
+
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Diagrama de Contêiners
+
+Person(usuario, "Usuário/Administrador")
+
+System_Boundary(c1, "FrontEnd Container") {
+    System_Boundary(c4, "Interações/Interface") {
+        System(aplicacao_web, "Aplicação Web", "Meio para interações com o usuário", "")
+    }
+}
+
+System_Boundary(c2, "BackEnd Container") {
+    System_Boundary(c3, "Controle/Gerenciamento de dados") {
+        System(autenticacao_gerenciamento, "Sistema de Autenticação e Gerenciamento de Usuários", "Autenticações de toda a aplicação e seus componentes", "")
+        System(pagamentos, "Sistema de Pagamentos", "Gerenciamento dos pagamentos", "")
+        System(estoque, "Sistema de Estoque", "Controle dos produtos disponíveis", "")
+        System(pedidos, "Sistema de Pedidos", "Pedido,catálogo e recomendações", "")
+        System(avaliacao_comentarios, "Sistema de Avaliação e Comentários", "", "")
+
+        
+    }
+}
+
+Rel(c1,usuario,"Fornece o meio para interação","")
+Rel(c2,usuario,"Processa os dados","")
+
 @enduml

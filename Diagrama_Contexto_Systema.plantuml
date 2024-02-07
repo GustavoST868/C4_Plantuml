@@ -1,6 +1,7 @@
 @startuml C4_Elements
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
+title Diagrama de Contexto de Sistema
 
 System(autenticacao_gerenciamento, "Sistema de Autenticação e Gerenciamento de Usuários", "Autenticações de toda a aplicação e seus componentes", "")
 System(pagamentos, "Sistema de Pagamentos", "Gerenciamento dos pagamentos", "")
