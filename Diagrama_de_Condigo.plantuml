@@ -1,8 +1,0 @@
-@startuml C4_Elements
-
-title Diagrama de Código
-
-
-
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
-@enduml

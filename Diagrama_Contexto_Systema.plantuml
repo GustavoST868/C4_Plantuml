@@ -20,5 +20,4 @@ Rel(pagamentos,pedidos,"Confirmação do pagamento","")
 
 Rel(estoque,pedidos,"Se o produto está disponível","")
 
-
 @enduml
