@@ -14,6 +14,8 @@ Rel(autenticacao_gerenciamento,pedidos,"Dados do usuário","")
 Rel(autenticacao_gerenciamento,pagamentos,"Dados do usuário","")
 Rel(autenticacao_gerenciamento,avaliacao_comentarios,"Dados do usuário","")
 Rel(autenticacao_gerenciamento,estoque,"Dados do administrador/usuário","")
+Rel(avaliacao_comentarios,pedidos,"Avaliação do pedido","")
+
 
 Rel(pedidos,pagamentos,"Dados do pagamento","")
 Rel(pagamentos,pedidos,"Confirmação do pagamento","")

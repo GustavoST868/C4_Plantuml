@@ -19,8 +19,6 @@ System_Boundary(c2, "BackEnd Container") {
         System(estoque, "Sistema de Estoque", "Controle dos produtos disponíveis", "")
         System(pedidos, "Sistema de Pedidos", "Pedido,catálogo e recomendações", "")
         System(avaliacao_comentarios, "Sistema de Avaliação e Comentários", "", "")
-
-        
     }
 }
 
