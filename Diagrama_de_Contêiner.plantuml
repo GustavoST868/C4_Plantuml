@@ -2,7 +2,7 @@
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-title Diagrama de Contêiners
+title Diagrama de Contêineres
 
 System_Boundary(c4, " Aplicação ") {
 
@@ -10,12 +10,12 @@ System_Boundary(c4, " Aplicação ") {
 
     System_Boundary(c5, "Interno ") {
         System_Boundary(c1, "Front-End ") {
-            Container(aplicacao_web, "Web/Front-end", "Responsável por fornecer uma interface web e apresentar dados ao usuário")
+            Container(aplicacao_web, "Web/Front-end", "Fornece uma interface web e apresenta dados ao usuário")
         }
 
         System_Boundary(c2, " Back-End ") {
-            Container(database, "Database", "Armazena e gerencia os dados da aplicação")
-            Container(operacoes, "Operações de Lógica", "Realiza operações de lógica e manipulação de dados")
+            Container(database, "Database", "Armazena e gerencia dados da aplicação")
+            Container(operacoes, "Operações de Lógica", "Realiza operações lógicas e manipulação de dados")
         }
     }
 
@@ -25,20 +25,20 @@ System_Boundary(c4, " Aplicação ") {
 
 }
 
-Rel(usuarios_administrador, aplicacao_web, "Interage com a aplicação por meio do Front-End, enviando solicitações e recebendo resultados", "")
-Rel(usuarios_administrador, database, "Acessa dados por meio do Back-End", "")
+Rel(usuarios_administrador, aplicacao_web, "Interage com a aplicação através do Front-End, enviando solicitações e recebendo resultados", "")
+Rel(usuarios_administrador, database, "Acessa dados através do Back-End", "")
 Rel(usuarios_administrador, operacoes, "Interage com operações lógicas e manipulação de dados no Back-End", "")
 
-Rel(aplicacao_web, database, "Envia e recebe dados do Back-End para apresentar na interface", "")
+Rel(aplicacao_web, database, "Troca dados com o Back-End para apresentação na interface", "")
 
-Rel(database, usuarios_administrador, "Fornece e guarda os dados da aplicação para o Front-End", "")
-Rel(database, operacoes, "Armazena e manipula os dados necessários para as operações lógicas", "")
+Rel(database, usuarios_administrador, "Fornece e armazena dados da aplicação para o Front-End", "")
+Rel(database, operacoes, "Armazena e manipula dados necessários para operações lógicas", "")
 Rel(database, pagamento, "Mantém dados históricos de transações e pagamentos", "")
 
-Rel(pagamento, aplicacao_web, "Envia resultados da confirmação de pagamento para serem apresentados na interface", "")
+Rel(pagamento, aplicacao_web, "Envia resultados da confirmação de pagamento para exibição na interface", "")
 Rel(pagamento, database, "Acessa dados de confirmações de pagamento anteriores no Back-End", "")
 
 Rel(operacoes, database, "Realiza operações lógicas sobre os dados armazenados", "")
-Rel(operacoes, aplicacao_web, "Fornece resultados das operações lógicas para serem apresentados na interface", "")
+Rel(operacoes, aplicacao_web, "Fornece resultados das operações lógicas para exibição na interface", "")
 
 @enduml
