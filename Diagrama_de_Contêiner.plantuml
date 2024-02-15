@@ -4,25 +4,41 @@
 
 title Diagrama de Contêiners
 
-Person(usuario, "Usuário/Administrador")
+System_Boundary(c4, " Aplicação ") {
 
-System_Boundary(c1, "FrontEnd Container") {
-    System_Boundary(c4, "Interações/Interface") {
-        System(aplicacao_web, "Aplicação Web", "Meio para interações com o usuário", "")
+    Person(usuarios_administrador, "Usuário/Administrador", "Representa o cliente da aplicação")
+
+    System_Boundary(c5, "Interno ") {
+        System_Boundary(c1, "Front-End ") {
+            Container(aplicacao_web, "Web/Front-end", "Responsável por fornecer uma interface web e apresentar dados ao usuário")
+        }
+
+        System_Boundary(c2, " Back-End ") {
+            Container(database, "Database", "Armazena e gerencia os dados da aplicação")
+            Container(operacoes, "Operações de Lógica", "Realiza operações de lógica e manipulação de dados")
+        }
     }
+
+    System_Boundary(c3, " Externo ") {
+        Container(pagamento, "Pagamento", "Lida com operações externas relacionadas a pagamentos")
+    }
+
 }
 
-System_Boundary(c2, "BackEnd Container") {
-    System_Boundary(c3, "Controle/Gerenciamento de dados") {
-        System(autenticacao_gerenciamento, "Sistema de Autenticação e Gerenciamento de Usuários", "Autenticações de toda a aplicação e seus componentes", "")
-        System(pagamentos, "Sistema de Pagamentos", "Gerenciamento dos pagamentos", "")
-        System(estoque, "Sistema de Estoque", "Controle dos produtos disponíveis", "")
-        System(pedidos, "Sistema de Pedidos", "Pedido,catálogo e recomendações", "")
-        System(avaliacao_comentarios, "Sistema de Avaliação e Comentários", "", "")
-    }
-}
+Rel(usuarios_administrador, aplicacao_web, "Interage com a aplicação por meio do Front-End, enviando solicitações e recebendo resultados", "")
+Rel(usuarios_administrador, database, "Acessa dados por meio do Back-End", "")
+Rel(usuarios_administrador, operacoes, "Interage com operações lógicas e manipulação de dados no Back-End", "")
 
-Rel(c1,usuario,"Fornece o meio para interação","")
-Rel(c2,usuario,"Processa os dados","")
+Rel(aplicacao_web, database, "Envia e recebe dados do Back-End para apresentar na interface", "")
+
+Rel(database, usuarios_administrador, "Fornece e guarda os dados da aplicação para o Front-End", "")
+Rel(database, operacoes, "Armazena e manipula os dados necessários para as operações lógicas", "")
+Rel(database, pagamento, "Mantém dados históricos de transações e pagamentos", "")
+
+Rel(pagamento, aplicacao_web, "Envia resultados da confirmação de pagamento para serem apresentados na interface", "")
+Rel(pagamento, database, "Acessa dados de confirmações de pagamento anteriores no Back-End", "")
+
+Rel(operacoes, database, "Realiza operações lógicas sobre os dados armazenados", "")
+Rel(operacoes, aplicacao_web, "Fornece resultados das operações lógicas para serem apresentados na interface", "")
 
 @enduml
