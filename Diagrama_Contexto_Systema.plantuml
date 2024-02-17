@@ -10,6 +10,7 @@ System(pagamentos, "Sistema de Pagamentos", "Gerenciamento dos pagamentos", "")
 System(estoque, "Sistema de Estoque e catálogo", "Controle dos produtos disponíveis", "")
 System(pedidos, "Sistema de Pedidos", "Pedido,catálogo e recomendações", "")
 System(avaliacao_comentarios, "Sistema de Avaliação e Comentários", "", "")
+System(interfaces, "Sistema de Interfaces", "Fornece os meios de interação da aplicação", "")
 
 
 Rel(autenticacao_gerenciamento,pedidos,"Dados do usuário","")
@@ -29,5 +30,12 @@ Rel(pedidos,pagamentos,"Dados do pagamento","")
 Rel(pagamentos,pedidos,"Confirmação do pagamento","")
 
 Rel(estoque,pedidos,"Disponível ou não","")
+
+Rel(interfaces,autenticacao_gerenciamento,"","")
+Rel(interfaces,pagamentos,"","")
+Rel(interfaces,estoque,"","")
+Rel(interfaces,pedidos,"","")
+Rel(interfaces,avaliacao_comentarios,"","")
+
 
 @enduml
